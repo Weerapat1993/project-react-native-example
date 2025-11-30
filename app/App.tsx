@@ -7,17 +7,21 @@ import Home from './pages/home';
 import About from './pages/about';
 import AuthLogin from './pages/auth/login';
 import { ROUTES } from '../constants/routes';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName={ROUTES.HOME}>
-        <Stack.Screen name={ROUTES.HOME} component={Home} />
-        <Stack.Screen name={ROUTES.ABOUT} component={About} />
-        <Stack.Screen name={ROUTES.AUTH.LOGIN} component={AuthLogin} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={ROUTES.HOME}>
+          <Stack.Screen name={ROUTES.HOME} component={Home} />
+          <Stack.Screen name={ROUTES.ABOUT} component={About} />
+          <Stack.Screen name={ROUTES.AUTH.LOGIN} component={AuthLogin} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

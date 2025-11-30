@@ -3,12 +3,20 @@ import {
   SafeAreaView,
   Text,
   StyleSheet,
+  Button,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../../store/counterSlice';
 
 const AboutPage = () => {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>About Page</Text>
+      <Text style={styles.fontSize30}>Count : {count}</Text>
+      <Button title="Increment" onPress={() => dispatch(increment())} />
+      <Button title="Decrement" onPress={() => dispatch(decrement())} />
     </SafeAreaView>
   );
 };
@@ -54,6 +62,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+  fontSize30: {
+    fontSize: 30,
+  }
 });
 
 export default AboutPage;
